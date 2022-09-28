@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+<launch>
+	
+
+  <!-- By default, we do not start a database (it can be large) -->
+  <arg name="db" default="false" />
+  <!-- Allow user to specify database location -->
+  <arg name="db_path" default="$(find exp_ass2)/default_warehouse_mongo_db" />
+
+  <!-- By default, we are not in debug mode -->
+  <arg name="debug" default="false" />
+
+  <!-- By default, we won't load or override the robot_description -->
+  <arg name="load_robot_description" default="false"/>
+
+  <arg name="use_gui" default="false" />
+
+  <!-- Gazebo specific options -->
+  <arg name="gazebo_gui" default="true"/>
+  <arg name="paused" default="false"/>
+  <!-- By default, use the urdf location provided from the package -->
+  <arg name="urdf_path" default="/root/ros_ws/src/exp_ass2/urdf/robot8.urdf"/>
+
+    <!-- startup simulated world -->
+  <include file="$(find exp_ass2)/launch/my_launch/exp2_ass.launch"></include> 
+
+  <!-- send robot urdf to param server -->
+  <param name="robot_description" textfile="$(arg urdf_path)" />
+
+  <!-- push robot_description to factory and spawn robot in gazebo at the origin, change x,y,z arguments to spawn in a different position -->
+  <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model robot -x 0 -y 0 -z 0"
+    respawn="false" output="screen" />
+
+  <include file="$(find exp_ass2)/launch/ros_controllers.launch"/>
+
+  
+
+  <!-- We do not have a robot connected, so publish fake joint states -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" unless="$(arg use_gui)">
+    <rosparam param="source_list">[move_group/fake_controller_joint_states]</rosparam>
+    <rosparam param="source_list">[/joint_states]</rosparam>
+  </node>
+  <node name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" if="$(arg use_gui)">
+    <rosparam param="source_list">[move_group/fake_controller_joint_states]</rosparam>
+    <rosparam param="source_list">[/joint_states]</rosparam>
+  </node>
+
+  <!-- Given the published joint states, publish tf for the robot links -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" />
+
+  <!-- Run the main MoveIt executable without trajectory execution (we do not have controllers configured by default) -->
+  <include file="$(find exp_ass2)/launch/move_group.launch">
+    <arg name="allow_trajectory_execution" value="true"/>
+    <arg name="fake_execution" value="false"/>
+    <arg name="info" value="true"/>
+    <arg name="debug" value="$(arg debug)"/>
+    <arg name="load_robot_description" value="$(arg load_robot_description)"/>
+  </include>
+
+  <!-- If database loading was enabled, start mongodb as well -->
+  <include file="$(find exp_ass2)/launch/default_warehouse_db.launch" if="$(arg db)">
+    <arg name="moveit_warehouse_database_path" value="$(arg db_path)"/>
+  </include>
+  
+ <!-- <node name="goToPoint" pkg="exprob_assignment2" type ="go_to_point.py"/>-->
+
+<!-- launch the pddl part-->
+<!-- arguments -->
+<arg name="domain_path"			 	default="$(find exp_ass2)/pddl/domain.pddl" />
+<arg name="problem_path" 			default="$(find exp_ass2)/pddl/problem.pddl" />
+<arg name="autom_gen_problem_path" 	default="$(find exp_ass2)/pddl/new_problem.pddl" />
+
+<!-- knowledge base -->S
+<node name="rosplan_knowledge_base" pkg="rosplan_knowledge_base" type="knowledgeBase" respawn="false" >
+<param name="domain_path"    value="$(arg domain_path)" />
+<param name="problem_path"   value="$(arg problem_path)" />
+<param name="use_unknowns"   value="false" />
+</node>
+
+<!-- problem generation -->
+<include file="$(find rosplan_planning_system)/launch/includes/problem_interface.launch">
+<arg name="knowledge_base" 	value="rosplan_knowledge_base" />
+<arg name="domain_path" 	value="$(arg domain_path)" />
+<arg name="problem_path" 	value="$(arg autom_gen_problem_path)" />
+<arg name="problem_topic" 	value="problem_instance" />
+</include>
+
+<!-- planning -->
+<include file="$(find rosplan_planning_system)/launch/includes/planner_interface.launch">
+<arg name="use_problem_topic" 	value="true" />
+<arg name="problem_topic" 	  	value="/rosplan_problem_interface/problem_instance" />
+<arg name="planner_topic" 		value="planner_output" />
+<arg name="domain_path"			value="$(arg domain_path)" />
+<arg name="problem_path" 	value="$(arg autom_gen_problem_path)" />
+<arg name="data_path" 			value="$(find exp_ass2)/pddl" />
+<arg name="planner_command" 		default="timeout 10 $(find rosplan_planning_system)/common/bin/popf DOMAIN PROBLEM" />>
+</include>>
+
+<!-- parsing -->
+<node name="rosplan_parsing_interface" pkg="rosplan_planning_system" type="pddl_simple_plan_parser" respawn="false" >
+<param name="knowledge_base"	 value="rosplan_knowledge_base" />
+<param name="planner_topic" 	 value="/rosplan_planner_interface/planner_output" />
+<param name="plan_topic" 		 value="complete_plan" />
+</node>
+
+<!-- dispatcing -->
+<node name="rosplan_plan_dispatcher" pkg="rosplan_planning_system" type="pddl_simple_plan_dispatcher" respawn="false" >
+<param name="knowledge_base" 		value="rosplan_knowledge_base" />
+<param name="plan_topic" 			value="/rosplan_parsing_interface/complete_plan" />
+<param name="action_dispatch_topic" value="action_dispatch" />
+<param name="action_feedback_topic" value="action_feedback" />
+</node>
+
+<!-- Action simulated -->
+
+<!--
+<include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+<arg name="pddl_action_name" value="goto_waypoint" />
+</include>
+
+<include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+<arg name="pddl_action_name" value="take_hint" />
+</include>
+
+<include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+<arg name="pddl_action_name" value="moveto_oracle" />
+</include>
+
+<include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+<arg name="pddl_action_name" value="moveto_hint" />
+</include>
+
+<include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+<arg name="pddl_action_name" value="hyp_ready" />
+</include>
+
+<include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+<arg name="pddl_action_name" value="check_hyp" />
+</include>
+-->
+
+<!-- Real action -->
+
+<node name="rosplan_interface_goto_waypoint" pkg="exp_ass2" type="MoveAction" respawn="false" output="screen">
+<param name="knowledge_base" value="rosplan_knowledge_base" />
+<param name="pddl_action_name" value="goto_waypoint" />
+<param name="action_dispatch_topic" value="/rosplan_plan_dispatcher/action_dispatch" />
+<param name="action_feedback_topic" value="/rosplan_plan_dispatcher/action_feedback" />
+</node>
+
+<node name="rosplan_interface_take_hint" pkg="exp_ass2" type="TakeHintAction" respawn="false" output="screen">
+<param name="knowledge_base" value="rosplan_knowledge_base" />
+<param name="pddl_action_name" value="take_hint" />
+<param name="action_dispatch_topic" value="/rosplan_plan_dispatcher/action_dispatch" />
+<param name="action_feedback_topic" value="/rosplan_plan_dispatcher/action_feedback" />
+</node>
+
+<node name="rosplan_interface_moveto_oracle" pkg="exp_ass2" type="MoveToOracleAction" respawn="false" output="screen">
+<param name="knowledge_base" value="rosplan_knowledge_base" />
+<param name="pddl_action_name" value="moveto_oracle" />
+<param name="action_dispatch_topic" value="/rosplan_plan_dispatcher/action_dispatch" />
+<param name="action_feedback_topic" value="/rosplan_plan_dispatcher/action_feedback" />
+</node>
+
+<node name="rosplan_interface_moveto_hint" pkg="exp_ass2" type="MoveToHintAction" respawn="false" output="screen">
+<param name="knowledge_base" value="rosplan_knowledge_base" />
+<param name="pddl_action_name" value="moveto_hint" />
+<param name="action_dispatch_topic" value="/rosplan_plan_dispatcher/action_dispatch" />
+<param name="action_feedback_topic" value="/rosplan_plan_dispatcher/action_feedback" />
+</node>
+
+<node name="rosplan_interface_hyp_ready" pkg="exp_ass2" type="HypReadyAction" respawn="false" output="screen">
+<param name="knowledge_base" value="rosplan_knowledge_base" />
+<param name="pddl_action_name" value="hyp_ready" />
+<param name="action_dispatch_topic" value="/rosplan_plan_dispatcher/action_dispatch" />
+<param name="action_feedback_topic" value="/rosplan_plan_dispatcher/action_feedback" />
+</node>
+
+<node name="rosplan_interface_check_hyp" pkg="exp_ass2" type="CheckHypAction" respawn="false" output="screen">
+<param name="knowledge_base" value="rosplan_knowledge_base" />
+<param name="pddl_action_name" value="check_hyp" />
+<param name="action_dispatch_topic" value="/rosplan_plan_dispatcher/action_dispatch" />
+<param name="action_feedback_topic" value="/rosplan_plan_dispatcher/action_feedback" />
+</node>
+
+<!-- node -->
+
+<node pkg="armor" type="execute" name="armor_service" args="it.emarolab.armor.ARMORMainService"/>
+<node name="hint_armor"  pkg="exp_ass2" type="hint_armor.py"/> 
+<node name="go_to_point" pkg="motion_plan" type="go_to_point_action.py" respawn="false"/>
+<!-- <node name="plan"  pkg="exp_ass2" type="plan.py"/> -->
+
+</launch>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+<!-- start the nodes-->
+
+<node pkg="armor" type="execute" name="armor_service" args="it.emarolab.armor.ARMORMainService"/>
+  
+   <node name="hint"  pkg="exp_ass2" type="hint_armor.py" />
+
+</launch>
+
