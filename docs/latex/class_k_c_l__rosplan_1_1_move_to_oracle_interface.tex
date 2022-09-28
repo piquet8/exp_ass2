@@ -1,0 +1,58 @@
+\hypertarget{class_k_c_l__rosplan_1_1_move_to_oracle_interface}{}\doxysection{K\+C\+L\+\_\+rosplan\+::Move\+To\+Oracle\+Interface Class Reference}
+\label{class_k_c_l__rosplan_1_1_move_to_oracle_interface}\index{KCL\_rosplan::MoveToOracleInterface@{KCL\_rosplan::MoveToOracleInterface}}
+
+
+Inheritance diagram for K\+C\+L\+\_\+rosplan\+::Move\+To\+Oracle\+Interface\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=231pt]{class_k_c_l__rosplan_1_1_move_to_oracle_interface__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for K\+C\+L\+\_\+rosplan\+::Move\+To\+Oracle\+Interface\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=231pt]{class_k_c_l__rosplan_1_1_move_to_oracle_interface__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_k_c_l__rosplan_1_1_move_to_oracle_interface_a05c33151b341a33bba546f436fda7379}\label{class_k_c_l__rosplan_1_1_move_to_oracle_interface_a05c33151b341a33bba546f436fda7379}} 
+{\bfseries Move\+To\+Oracle\+Interface} (ros\+::\+Node\+Handle \&nh)
+\item 
+bool \mbox{\hyperlink{class_k_c_l__rosplan_1_1_move_to_oracle_interface_a6e18a2007a5eb413e4c42027db5ce58b}{concrete\+Callback}} (const rosplan\+\_\+dispatch\+\_\+msgs\+::\+Action\+Dispatch\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em \+: \mbox{\hyperlink{class_k_c_l__rosplan_1_1_move_to_oracle_interface}{Move\+To\+Oracle\+Interface}} function \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_k_c_l__rosplan_1_1_move_to_oracle_interface_a6e18a2007a5eb413e4c42027db5ce58b}\label{class_k_c_l__rosplan_1_1_move_to_oracle_interface_a6e18a2007a5eb413e4c42027db5ce58b}} 
+\index{KCL\_rosplan::MoveToOracleInterface@{KCL\_rosplan::MoveToOracleInterface}!concreteCallback@{concreteCallback}}
+\index{concreteCallback@{concreteCallback}!KCL\_rosplan::MoveToOracleInterface@{KCL\_rosplan::MoveToOracleInterface}}
+\doxysubsubsection{\texorpdfstring{concreteCallback()}{concreteCallback()}}
+{\footnotesize\ttfamily bool K\+C\+L\+\_\+rosplan\+::\+Move\+To\+Oracle\+Interface\+::concrete\+Callback (\begin{DoxyParamCaption}\item[{const rosplan\+\_\+dispatch\+\_\+msgs\+::\+Action\+Dispatch\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+\+: \mbox{\hyperlink{class_k_c_l__rosplan_1_1_move_to_oracle_interface}{Move\+To\+Oracle\+Interface}} function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & \+: the variables received from the plan dispatcher\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true
+\end{DoxyReturn}
+This function implements the movement of the robot from the waypoint to the center (home) when the planner dispatches the action goto\+\_\+waypoint. It takes the position of ~\newline
+ the home and sends the request to the go\+\_\+to\+\_\+point server to reach the new position. When the robot reach the position the action is marked as performed. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/exp\+\_\+ass2/Interface\+Action.\+h\item 
+src/\mbox{\hyperlink{_move_to_oracle_action_8cpp}{Move\+To\+Oracle\+Action.\+cpp}}\end{DoxyCompactItemize}

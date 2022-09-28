@@ -1,0 +1,150 @@
+\hypertarget{plan_8py}{}\doxysection{scripts/plan.py File Reference}
+\label{plan_8py}\index{scripts/plan.py@{scripts/plan.py}}
+
+
+this file implements the calls to the planning server  
+
+
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{plan_8py_ac5fe6336ae13f74da3e3f392b6f32621}{plan.\+init\+\_\+plan}} ()
+\begin{DoxyCompactList}\small\item\em Initalize plan servers. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{plan_8py_a994fc0bf151b357891148819f85f491b}{plan.\+random\+\_\+position}} ()
+\begin{DoxyCompactList}\small\item\em This function implements the random wayponints choice. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{plan_8py_a1f703bf9649a5092eb557ea1d16dde38}{plan.\+update\+\_\+waypoint}} (name)
+\begin{DoxyCompactList}\small\item\em Waypoint update. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{plan_8py_af788d043effa96b957d9741c29ea5cc0}{plan.\+update\+\_\+ready\+\_\+hyp}} ()
+\begin{DoxyCompactList}\small\item\em Ready hypothesis update. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{plan_8py_a083c096ec4ebeef2607a3a0b57b8daa0}{plan.\+main}} ()
+\begin{DoxyCompactList}\small\item\em Main function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{plan_8py_abcbd0ceda123b17eaca49fb3e1d5691a}\label{plan_8py_abcbd0ceda123b17eaca49fb3e1d5691a}} 
+int {\bfseries plan.\+x} = 4
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+this file implements the calls to the planning server 
+
+\begin{DoxyAuthor}{Author}
+Gianluca Piquet 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+01/09/2022
+\end{DoxyDate}
+Subscribes to\+: ~\newline
+
+
+Publishes to\+: ~\newline
+
+
+Services\+: ~\newline
+
+
+Action Services\+: ~\newline
+
+
+Client Services\+: ~\newline
+ /rosplan\+\_\+problem\+\_\+interface/problem\+\_\+generation\+\_\+server /rosplan\+\_\+planner\+\_\+interface/planning\+\_\+server /rosplan\+\_\+parsing\+\_\+interface/parse\+\_\+plan /rosplan\+\_\+plan\+\_\+dispatcher/dispatch\+\_\+plan /rosplan\+\_\+knowledge\+\_\+base/update
+
+Description\+: ~\newline
+ This script implements the plan that allows the robot to achieve its goal by performing the different actions. Until all actions are successful ( especially the \char`\"{}\+Check\+Hyp\+Action\char`\"{} action) a re-\/planning takes place. Within the script we find, for the previous purpose, several update functions. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{plan_8py_ac5fe6336ae13f74da3e3f392b6f32621}\label{plan_8py_ac5fe6336ae13f74da3e3f392b6f32621}} 
+\index{plan.py@{plan.py}!init\_plan@{init\_plan}}
+\index{init\_plan@{init\_plan}!plan.py@{plan.py}}
+\doxysubsubsection{\texorpdfstring{init\_plan()}{init\_plan()}}
+{\footnotesize\ttfamily def plan.\+init\+\_\+plan (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initalize plan servers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em } & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: None
+\end{DoxyReturn}
+This function initializes all the servers needed for the generation, planning and execution of the plan \mbox{\Hypertarget{plan_8py_a083c096ec4ebeef2607a3a0b57b8daa0}\label{plan_8py_a083c096ec4ebeef2607a3a0b57b8daa0}} 
+\index{plan.py@{plan.py}!main@{main}}
+\index{main@{main}!plan.py@{plan.py}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily def plan.\+main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Main function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em } & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: None
+\end{DoxyReturn}
+This function initializes all the servers needed to implement the plan, also, starts re-\/planning until the goal and success conditions are true \mbox{\Hypertarget{plan_8py_a994fc0bf151b357891148819f85f491b}\label{plan_8py_a994fc0bf151b357891148819f85f491b}} 
+\index{plan.py@{plan.py}!random\_position@{random\_position}}
+\index{random\_position@{random\_position}!plan.py@{plan.py}}
+\doxysubsubsection{\texorpdfstring{random\_position()}{random\_position()}}
+{\footnotesize\ttfamily def plan.\+random\+\_\+position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This function implements the random wayponints choice. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em } & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: None
+\end{DoxyReturn}
+This function is used to implement the random choice of waypoint to visit. A random number between 1 and 4 is generated, and the corresponding waypoint found is updated to unvisited by calling the \mbox{\hyperlink{plan_8py_a1f703bf9649a5092eb557ea1d16dde38}{update\+\_\+waypoint()}} function, which changes the value of new\+\_\+hint from True to False. Finally, the variable ready\+\_\+hp is also changed to False by the \mbox{\hyperlink{plan_8py_af788d043effa96b957d9741c29ea5cc0}{update\+\_\+ready\+\_\+hyp()}} function. \mbox{\Hypertarget{plan_8py_af788d043effa96b957d9741c29ea5cc0}\label{plan_8py_af788d043effa96b957d9741c29ea5cc0}} 
+\index{plan.py@{plan.py}!update\_ready\_hyp@{update\_ready\_hyp}}
+\index{update\_ready\_hyp@{update\_ready\_hyp}!plan.py@{plan.py}}
+\doxysubsubsection{\texorpdfstring{update\_ready\_hyp()}{update\_ready\_hyp()}}
+{\footnotesize\ttfamily def plan.\+update\+\_\+ready\+\_\+hyp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Ready hypothesis update. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em } & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: None
+\end{DoxyReturn}
+This function implement the calls to the knowledge base server to update the predicate (ready\+\_\+hp), in this way the robot continues its research \mbox{\Hypertarget{plan_8py_a1f703bf9649a5092eb557ea1d16dde38}\label{plan_8py_a1f703bf9649a5092eb557ea1d16dde38}} 
+\index{plan.py@{plan.py}!update\_waypoint@{update\_waypoint}}
+\index{update\_waypoint@{update\_waypoint}!plan.py@{plan.py}}
+\doxysubsubsection{\texorpdfstring{update\_waypoint()}{update\_waypoint()}}
+{\footnotesize\ttfamily def plan.\+update\+\_\+waypoint (\begin{DoxyParamCaption}\item[{}]{name }\end{DoxyParamCaption})}
+
+
+
+Waypoint update. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & waypoint \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: None
+\end{DoxyReturn}
+This function implement the calls to the knowledge base server to update the predicate (new\+\_\+hint) for one waypoint, in this way the waypoint becomes not visited again 

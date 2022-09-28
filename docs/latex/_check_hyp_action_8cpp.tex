@@ -1,0 +1,117 @@
+\hypertarget{_check_hyp_action_8cpp}{}\doxysection{src/\+Check\+Hyp\+Action.cpp File Reference}
+\label{_check_hyp_action_8cpp}\index{src/CheckHypAction.cpp@{src/CheckHypAction.cpp}}
+
+
+This script implements an action that check if a hypothesis is the winner one.  
+
+
+{\ttfamily \#include \char`\"{}exp\+\_\+ass2/\+Interface\+Action.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$actionlib/client/simple\+\_\+action\+\_\+client.\+h$>$}\newline
+{\ttfamily \#include $<$actionlib/client/terminal\+\_\+state.\+h$>$}\newline
+{\ttfamily \#include $<$motion\+\_\+plan/\+Planning\+Action.\+h$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$exp\+\_\+ass2/\+Erl\+Oracle.\+h$>$}\newline
+{\ttfamily \#include $<$exp\+\_\+ass2/\+New\+Hint.\+h$>$}\newline
+{\ttfamily \#include $<$exp\+\_\+ass2/\+New\+Hyp.\+h$>$}\newline
+{\ttfamily \#include $<$exp\+\_\+ass2/\+Oracle.\+h$>$}\newline
+Include dependency graph for Check\+Hyp\+Action.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_check_hyp_action_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_check_hyp_action_8cpp_a9efcb435a4e3bf8994a0f378aafbca4b}{new\+\_\+hypothesis}} (const exp\+\_\+ass2\+::\+New\+Hyp\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em \+: new\+\_\+hypothesis function \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_check_hyp_action_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em \+: main function \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_check_hyp_action_8cpp_ae44893644ca3b2e92d75fb24e0f52d06}\label{_check_hyp_action_8cpp_ae44893644ca3b2e92d75fb24e0f52d06}} 
+bool {\bfseries winner} = false
+\item 
+\mbox{\Hypertarget{_check_hyp_action_8cpp_a175e82d399823c4481a4a4cefac551ad}\label{_check_hyp_action_8cpp_a175e82d399823c4481a4a4cefac551ad}} 
+std\+::string {\bfseries who} = \char`\"{}\char`\"{}
+\item 
+\mbox{\Hypertarget{_check_hyp_action_8cpp_aa0f5cc2b89d710a8164d6df08e32d1df}\label{_check_hyp_action_8cpp_aa0f5cc2b89d710a8164d6df08e32d1df}} 
+std\+::string {\bfseries what} = \char`\"{}\char`\"{}
+\item 
+\mbox{\Hypertarget{_check_hyp_action_8cpp_aaf339ef78570835d38f8c25eecd0d900}\label{_check_hyp_action_8cpp_aaf339ef78570835d38f8c25eecd0d900}} 
+std\+::string {\bfseries where} = \char`\"{}\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This script implements an action that check if a hypothesis is the winner one. 
+
+@ package exp\+\_\+ass2
+
+\begin{DoxyAuthor}{Author}
+Gianluca Piquet 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+01/09/2022
+\end{DoxyDate}
+Subscribes to\+: ~\newline
+ None
+
+Publishes to\+: ~\newline
+ /hypothesis
+
+Services\+: ~\newline
+ /oracle\+\_\+solution
+
+Client Services\+: ~\newline
+ None
+
+Action Services\+: ~\newline
+ None
+
+Description\+: ~\newline
+ This program acquires a hypothesis by subscribing to the topic /hypothesis and compares its ID with the winning one 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_check_hyp_action_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{_check_hyp_action_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{CheckHypAction.cpp@{CheckHypAction.cpp}!main@{main}}
+\index{main@{main}!CheckHypAction.cpp@{CheckHypAction.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+\+: main function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em } & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_check_hyp_action_8cpp_a9efcb435a4e3bf8994a0f378aafbca4b}\label{_check_hyp_action_8cpp_a9efcb435a4e3bf8994a0f378aafbca4b}} 
+\index{CheckHypAction.cpp@{CheckHypAction.cpp}!new\_hypothesis@{new\_hypothesis}}
+\index{new\_hypothesis@{new\_hypothesis}!CheckHypAction.cpp@{CheckHypAction.cpp}}
+\doxysubsubsection{\texorpdfstring{new\_hypothesis()}{new\_hypothesis()}}
+{\footnotesize\ttfamily void new\+\_\+hypothesis (\begin{DoxyParamCaption}\item[{const exp\+\_\+ass2\+::\+New\+Hyp\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+\+: new\+\_\+hypothesis function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & \+: the variables received from the plan dispatcher\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+this function via the /oracle\+\_\+solution service acquires the hypothesis values and assigns them to the respective variables, also checks if the hypothesis is the correct one and sets winner to true or false 

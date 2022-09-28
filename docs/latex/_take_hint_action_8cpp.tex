@@ -1,0 +1,252 @@
+\hypertarget{_take_hint_action_8cpp}{}\doxysection{src/\+Take\+Hint\+Action.cpp File Reference}
+\label{_take_hint_action_8cpp}\index{src/TakeHintAction.cpp@{src/TakeHintAction.cpp}}
+
+
+This script implements an action that move the robot\textquotesingle{}s arm to take the hints.  
+
+
+{\ttfamily \#include $<$ros/ros.\+h$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include \char`\"{}nav\+\_\+msgs/\+Odometry.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}exp\+\_\+ass2/\+Interface\+Action.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$actionlib/client/simple\+\_\+action\+\_\+client.\+h$>$}\newline
+{\ttfamily \#include $<$actionlib/client/terminal\+\_\+state.\+h$>$}\newline
+{\ttfamily \#include $<$motion\+\_\+plan/\+Planning\+Action.\+h$>$}\newline
+{\ttfamily \#include $<$moveit/move\+\_\+group\+\_\+interface/move\+\_\+group\+\_\+interface.\+h$>$}\newline
+{\ttfamily \#include $<$moveit/robot\+\_\+model\+\_\+loader/robot\+\_\+model\+\_\+loader.\+h$>$}\newline
+{\ttfamily \#include $<$moveit/robot\+\_\+model/robot\+\_\+model.\+h$>$}\newline
+{\ttfamily \#include $<$moveit/robot\+\_\+state/robot\+\_\+state.\+h$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$exp\+\_\+ass2/\+Erl\+Oracle.\+h$>$}\newline
+{\ttfamily \#include $<$exp\+\_\+ass2/\+New\+Hint.\+h$>$}\newline
+{\ttfamily \#include $<$exp\+\_\+ass2/\+New\+Hyp.\+h$>$}\newline
+{\ttfamily \#include $<$exp\+\_\+ass2/\+Oracle.\+h$>$}\newline
+{\ttfamily \#include $<$visualization\+\_\+msgs/\+Marker\+Array.\+h$>$}\newline
+Include dependency graph for Take\+Hint\+Action.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_take_hint_action_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{_take_hint_action_8cpp_aaea46b270a4ece0f8bd6c0b13f4261a1}{move\+\_\+up}} ()
+\begin{DoxyCompactList}\small\item\em \+: move\+\_\+up function \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_take_hint_action_8cpp_a741d16128f51d4a80bf890070570f5c8}{move\+\_\+down}} ()
+\begin{DoxyCompactList}\small\item\em \+: move\+\_\+down function \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_take_hint_action_8cpp_a3d34fb80cce94fc780709edf5ddad52f}{move\+\_\+arm}} ()
+\begin{DoxyCompactList}\small\item\em \+: move\+\_\+arm function \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_take_hint_action_8cpp_a956ebaa055cd675c7e610899d733fbd3}{take\+\_\+hint}} (const exp\+\_\+ass2\+::\+Erl\+Oracle\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em \+: take\+\_\+hint function \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_take_hint_action_8cpp_aaa79e218b5e82636c4b72e0c979f00f3}{marker\+\_\+position}} (const visualization\+\_\+msgs\+::\+Marker\+Array\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em \+: marker\+\_\+position function \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_take_hint_action_8cpp_ac506d5d2f08bfd466f7d65f96045eee1}{wp\+\_\+pose}} (const nav\+\_\+msgs\+::\+Odometry\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em \+: wp\+\_\+pose function \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_take_hint_action_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em \+: main function \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_take_hint_action_8cpp_aea74617fa323e497085c661a5c17a975}\label{_take_hint_action_8cpp_aea74617fa323e497085c661a5c17a975}} 
+int {\bfseries prev\+\_\+pose} = 0
+\item 
+\mbox{\Hypertarget{_take_hint_action_8cpp_ae9b3685fce8eff636c76cc539457bfec}\label{_take_hint_action_8cpp_ae9b3685fce8eff636c76cc539457bfec}} 
+int {\bfseries first\+\_\+motion} = 0
+\item 
+\mbox{\Hypertarget{_take_hint_action_8cpp_a9f89bfa74baa0f3fd108e3314016e4be}\label{_take_hint_action_8cpp_a9f89bfa74baa0f3fd108e3314016e4be}} 
+ros\+::\+Publisher {\bfseries hint\+\_\+pub}
+\item 
+\mbox{\Hypertarget{_take_hint_action_8cpp_af203f5ddbac4a47afed1a07b97e7e477}\label{_take_hint_action_8cpp_af203f5ddbac4a47afed1a07b97e7e477}} 
+int {\bfseries wp} = 0
+\item 
+\mbox{\Hypertarget{_take_hint_action_8cpp_ac4178e741d664761d3816334c33dde9d}\label{_take_hint_action_8cpp_ac4178e741d664761d3816334c33dde9d}} 
+float {\bfseries wp1\+\_\+z}
+\item 
+\mbox{\Hypertarget{_take_hint_action_8cpp_a5ac6bd28b837d25a000ef678c084bf4c}\label{_take_hint_action_8cpp_a5ac6bd28b837d25a000ef678c084bf4c}} 
+float {\bfseries wp2\+\_\+z}
+\item 
+\mbox{\Hypertarget{_take_hint_action_8cpp_ae86bfbcff83f449d3db3507d75a5baff}\label{_take_hint_action_8cpp_ae86bfbcff83f449d3db3507d75a5baff}} 
+float {\bfseries wp3\+\_\+z}
+\item 
+\mbox{\Hypertarget{_take_hint_action_8cpp_ae99cf8a87bfe0a29e1a9484ca4f7f73c}\label{_take_hint_action_8cpp_ae99cf8a87bfe0a29e1a9484ca4f7f73c}} 
+float {\bfseries wp4\+\_\+z}
+\item 
+\mbox{\Hypertarget{_take_hint_action_8cpp_a2d2cb4b9c3ec77bf8dac1d922755d9ef}\label{_take_hint_action_8cpp_a2d2cb4b9c3ec77bf8dac1d922755d9ef}} 
+int {\bfseries first\+\_\+look\+\_\+wp1} = 0
+\item 
+\mbox{\Hypertarget{_take_hint_action_8cpp_a277cd8c7a0ac495d25108351c48139bf}\label{_take_hint_action_8cpp_a277cd8c7a0ac495d25108351c48139bf}} 
+int {\bfseries first\+\_\+look\+\_\+wp2} = 0
+\item 
+\mbox{\Hypertarget{_take_hint_action_8cpp_afc464a0b849aa3ee3f646d8853366f68}\label{_take_hint_action_8cpp_afc464a0b849aa3ee3f646d8853366f68}} 
+int {\bfseries first\+\_\+look\+\_\+wp3} = 0
+\item 
+\mbox{\Hypertarget{_take_hint_action_8cpp_a66c92d6846544bdd9655593430872c8d}\label{_take_hint_action_8cpp_a66c92d6846544bdd9655593430872c8d}} 
+int {\bfseries first\+\_\+look\+\_\+wp4} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This script implements an action that move the robot\textquotesingle{}s arm to take the hints. 
+
+@ package exp\+\_\+ass2
+
+\begin{DoxyAuthor}{Author}
+Gianluca Piquet 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+01/09/2022
+\end{DoxyDate}
+Subscribes to\+: ~\newline
+ /visualization\+\_\+marker /oracle\+\_\+hint odom
+
+Publishes to\+: ~\newline
+ /new\+\_\+hint
+
+Services\+: ~\newline
+ None
+
+Client Services\+: ~\newline
+ None
+
+Action Services\+: ~\newline
+ None
+
+Description\+: ~\newline
+ This program implements the action that allow the robot to move the arm and collect hints, the arm can be set in two different z position \char`\"{}up\char`\"{}-\/$>$ 1.\+25 \char`\"{}down\char`\"{} -\/$>$ 0.\+75. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_take_hint_action_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{_take_hint_action_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{TakeHintAction.cpp@{TakeHintAction.cpp}!main@{main}}
+\index{main@{main}!TakeHintAction.cpp@{TakeHintAction.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+\+: main function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em } & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: 0
+\end{DoxyReturn}
+This function initialize the node and all the sub/pub used \mbox{\Hypertarget{_take_hint_action_8cpp_aaa79e218b5e82636c4b72e0c979f00f3}\label{_take_hint_action_8cpp_aaa79e218b5e82636c4b72e0c979f00f3}} 
+\index{TakeHintAction.cpp@{TakeHintAction.cpp}!marker\_position@{marker\_position}}
+\index{marker\_position@{marker\_position}!TakeHintAction.cpp@{TakeHintAction.cpp}}
+\doxysubsubsection{\texorpdfstring{marker\_position()}{marker\_position()}}
+{\footnotesize\ttfamily void marker\+\_\+position (\begin{DoxyParamCaption}\item[{const visualization\+\_\+msgs\+::\+Marker\+Array\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+\+: marker\+\_\+position function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em } & msg\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+This function is used to acquire the z position of markers \mbox{\Hypertarget{_take_hint_action_8cpp_a3d34fb80cce94fc780709edf5ddad52f}\label{_take_hint_action_8cpp_a3d34fb80cce94fc780709edf5ddad52f}} 
+\index{TakeHintAction.cpp@{TakeHintAction.cpp}!move\_arm@{move\_arm}}
+\index{move\_arm@{move\_arm}!TakeHintAction.cpp@{TakeHintAction.cpp}}
+\doxysubsubsection{\texorpdfstring{move\_arm()}{move\_arm()}}
+{\footnotesize\ttfamily int move\+\_\+arm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\+: move\+\_\+arm function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em } & None\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+This function implements the control of arm movement. The particularity of this code is that it checks whether a waypoint has already been visited in fact, if the robot encounters this waypoint for the first time it will move the arm to either the \char`\"{}up\char`\"{} or \char`\"{}down\char`\"{} position, if on the other hand the robot has already encountered this wayoint it will have already recorded the position of the hint taken in the first visit and will change the arm position only if necessary \mbox{\Hypertarget{_take_hint_action_8cpp_a741d16128f51d4a80bf890070570f5c8}\label{_take_hint_action_8cpp_a741d16128f51d4a80bf890070570f5c8}} 
+\index{TakeHintAction.cpp@{TakeHintAction.cpp}!move\_down@{move\_down}}
+\index{move\_down@{move\_down}!TakeHintAction.cpp@{TakeHintAction.cpp}}
+\doxysubsubsection{\texorpdfstring{move\_down()}{move\_down()}}
+{\footnotesize\ttfamily int move\+\_\+down (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\+: move\+\_\+down function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em } & None\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0
+\end{DoxyReturn}
+This function uses moveit to move the robot arm to the lowest position which corresponds to the \char`\"{}down\char`\"{} position \mbox{\Hypertarget{_take_hint_action_8cpp_aaea46b270a4ece0f8bd6c0b13f4261a1}\label{_take_hint_action_8cpp_aaea46b270a4ece0f8bd6c0b13f4261a1}} 
+\index{TakeHintAction.cpp@{TakeHintAction.cpp}!move\_up@{move\_up}}
+\index{move\_up@{move\_up}!TakeHintAction.cpp@{TakeHintAction.cpp}}
+\doxysubsubsection{\texorpdfstring{move\_up()}{move\_up()}}
+{\footnotesize\ttfamily int move\+\_\+up (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\+: move\+\_\+up function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em } & None\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0
+\end{DoxyReturn}
+This function uses moveit to move the robot arm to the highest position which corresponds to the \char`\"{}up\char`\"{} position \mbox{\Hypertarget{_take_hint_action_8cpp_a956ebaa055cd675c7e610899d733fbd3}\label{_take_hint_action_8cpp_a956ebaa055cd675c7e610899d733fbd3}} 
+\index{TakeHintAction.cpp@{TakeHintAction.cpp}!take\_hint@{take\_hint}}
+\index{take\_hint@{take\_hint}!TakeHintAction.cpp@{TakeHintAction.cpp}}
+\doxysubsubsection{\texorpdfstring{take\_hint()}{take\_hint()}}
+{\footnotesize\ttfamily void take\+\_\+hint (\begin{DoxyParamCaption}\item[{const exp\+\_\+ass2\+::\+Erl\+Oracle\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+\+: take\+\_\+hint function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em } & msg\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+This function handles the hints taken from the arm; if the hint has the correct format the function publlishes it on the topic /new\+\_\+hint \mbox{\Hypertarget{_take_hint_action_8cpp_ac506d5d2f08bfd466f7d65f96045eee1}\label{_take_hint_action_8cpp_ac506d5d2f08bfd466f7d65f96045eee1}} 
+\index{TakeHintAction.cpp@{TakeHintAction.cpp}!wp\_pose@{wp\_pose}}
+\index{wp\_pose@{wp\_pose}!TakeHintAction.cpp@{TakeHintAction.cpp}}
+\doxysubsubsection{\texorpdfstring{wp\_pose()}{wp\_pose()}}
+{\footnotesize\ttfamily void wp\+\_\+pose (\begin{DoxyParamCaption}\item[{const nav\+\_\+msgs\+::\+Odometry\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+\+: wp\+\_\+pose function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em } & msg\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+This function is used to know which waypoint the robot is at, so if the robot has already visited that waypoint it can use the corresponding z to position the arm 

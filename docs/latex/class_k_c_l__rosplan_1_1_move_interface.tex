@@ -1,0 +1,57 @@
+\hypertarget{class_k_c_l__rosplan_1_1_move_interface}{}\doxysection{K\+C\+L\+\_\+rosplan\+::Move\+Interface Class Reference}
+\label{class_k_c_l__rosplan_1_1_move_interface}\index{KCL\_rosplan::MoveInterface@{KCL\_rosplan::MoveInterface}}
+
+
+Inheritance diagram for K\+C\+L\+\_\+rosplan\+::Move\+Interface\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{class_k_c_l__rosplan_1_1_move_interface__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for K\+C\+L\+\_\+rosplan\+::Move\+Interface\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{class_k_c_l__rosplan_1_1_move_interface__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_k_c_l__rosplan_1_1_move_interface_af0b576f285907b14d59f826444cac0b3}\label{class_k_c_l__rosplan_1_1_move_interface_af0b576f285907b14d59f826444cac0b3}} 
+{\bfseries Move\+Interface} (ros\+::\+Node\+Handle \&nh)
+\item 
+bool \mbox{\hyperlink{class_k_c_l__rosplan_1_1_move_interface_a39f18b2e2ca6e696a119c6f7a843a6b5}{concrete\+Callback}} (const rosplan\+\_\+dispatch\+\_\+msgs\+::\+Action\+Dispatch\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em \+: \mbox{\hyperlink{class_k_c_l__rosplan_1_1_move_interface}{Move\+Interface}} function \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_k_c_l__rosplan_1_1_move_interface_a39f18b2e2ca6e696a119c6f7a843a6b5}\label{class_k_c_l__rosplan_1_1_move_interface_a39f18b2e2ca6e696a119c6f7a843a6b5}} 
+\index{KCL\_rosplan::MoveInterface@{KCL\_rosplan::MoveInterface}!concreteCallback@{concreteCallback}}
+\index{concreteCallback@{concreteCallback}!KCL\_rosplan::MoveInterface@{KCL\_rosplan::MoveInterface}}
+\doxysubsubsection{\texorpdfstring{concreteCallback()}{concreteCallback()}}
+{\footnotesize\ttfamily bool K\+C\+L\+\_\+rosplan\+::\+Move\+Interface\+::concrete\+Callback (\begin{DoxyParamCaption}\item[{const rosplan\+\_\+dispatch\+\_\+msgs\+::\+Action\+Dispatch\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+\+: \mbox{\hyperlink{class_k_c_l__rosplan_1_1_move_interface}{Move\+Interface}} function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & \+: the variables received from the plan dispatcher\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true
+\end{DoxyReturn}
+This function implements the movement of the robot between the waypoints when the planner dispatches the action goto\+\_\+waypoint. It takes the waypoints name and sends the request to the go\+\_\+to\+\_\+point server to reach the new position. When the robot reach the position the action is marked as performed. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/exp\+\_\+ass2/Interface\+Action.\+h\item 
+src/\mbox{\hyperlink{_move_action_8cpp}{Move\+Action.\+cpp}}\end{DoxyCompactItemize}

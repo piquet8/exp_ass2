@@ -1,0 +1,79 @@
+\hypertarget{_move_action_8cpp}{}\doxysection{src/\+Move\+Action.cpp File Reference}
+\label{_move_action_8cpp}\index{src/MoveAction.cpp@{src/MoveAction.cpp}}
+
+
+This script implements an action that move the robot from one waypoint to another one.  
+
+
+{\ttfamily \#include \char`\"{}exp\+\_\+ass2/\+Interface\+Action.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$actionlib/client/simple\+\_\+action\+\_\+client.\+h$>$}\newline
+{\ttfamily \#include $<$actionlib/client/terminal\+\_\+state.\+h$>$}\newline
+{\ttfamily \#include $<$motion\+\_\+plan/\+Planning\+Action.\+h$>$}\newline
+Include dependency graph for Move\+Action.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_move_action_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{_move_action_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em \+: Main moveaction function \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This script implements an action that move the robot from one waypoint to another one. 
+
+@ package exp\+\_\+ass2
+
+\begin{DoxyAuthor}{Author}
+Gianluca Piquet 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+01/09/2022
+\end{DoxyDate}
+Subscribes to\+: ~\newline
+ None
+
+Publishes to\+: ~\newline
+ None
+
+Services\+: ~\newline
+ None
+
+Client Services\+: ~\newline
+ None
+
+Action Services\+: ~\newline
+ reaching\+\_\+goal
+
+Description\+: ~\newline
+ This program implements the action that allow the robot to move from a waypoint to another one, to do that it used the \char`\"{}reaching goal\char`\"{} of the go\+\_\+to\+\_\+point\+\_\+action node in the motion\+\_\+plan package. To avoid the problem of the orientation of the robot at the end of the goal I imposed that any time after the robot reach a position it pass through the center of the arena, in this way it\textquotesingle{}s sure thata the robot will arrive to the waypoint with frontal orientation repspect to the wall 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_move_action_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{_move_action_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{MoveAction.cpp@{MoveAction.cpp}!main@{main}}
+\index{main@{main}!MoveAction.cpp@{MoveAction.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+\+: Main moveaction function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & \+:\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0
+\end{DoxyReturn}
+The main function initializes the node and the interface to associate the action of the ros-\/plan 

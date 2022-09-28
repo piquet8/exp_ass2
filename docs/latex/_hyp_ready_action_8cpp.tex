@@ -1,0 +1,106 @@
+\hypertarget{_hyp_ready_action_8cpp}{}\doxysection{src/\+Hyp\+Ready\+Action.cpp File Reference}
+\label{_hyp_ready_action_8cpp}\index{src/HypReadyAction.cpp@{src/HypReadyAction.cpp}}
+
+
+This script implements an action that check if a hypothesis is ready.  
+
+
+{\ttfamily \#include \char`\"{}exp\+\_\+ass2/\+Interface\+Action.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$actionlib/client/simple\+\_\+action\+\_\+client.\+h$>$}\newline
+{\ttfamily \#include $<$actionlib/client/terminal\+\_\+state.\+h$>$}\newline
+{\ttfamily \#include $<$motion\+\_\+plan/\+Planning\+Action.\+h$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$exp\+\_\+ass2/\+Erl\+Oracle.\+h$>$}\newline
+{\ttfamily \#include $<$exp\+\_\+ass2/\+New\+Hint.\+h$>$}\newline
+{\ttfamily \#include $<$exp\+\_\+ass2/\+New\+Hyp.\+h$>$}\newline
+{\ttfamily \#include $<$exp\+\_\+ass2/\+Oracle.\+h$>$}\newline
+Include dependency graph for Hyp\+Ready\+Action.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_hyp_ready_action_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_hyp_ready_action_8cpp_af51469e6d1a5a6288b0b593b0dd3f254}{\+\_\+new\+\_\+hyp}} (const exp\+\_\+ass2\+::\+New\+Hyp\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em \+: new\+\_\+hyp function \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_hyp_ready_action_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em \+: main function \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_hyp_ready_action_8cpp_a6150e0515f7202e2fb518f7206ed97dc}\label{_hyp_ready_action_8cpp_a6150e0515f7202e2fb518f7206ed97dc}} 
+int {\bfseries x} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This script implements an action that check if a hypothesis is ready. 
+
+@ package exp\+\_\+ass2
+
+\begin{DoxyAuthor}{Author}
+Gianluca Piquet 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+01/09/2022
+\end{DoxyDate}
+Subscribes to\+: ~\newline
+ None
+
+Publishes to\+: ~\newline
+ /hypothesis
+
+Services\+: ~\newline
+ None
+
+Client Services\+: ~\newline
+ None
+
+Action Services\+: ~\newline
+ None
+
+Description\+: ~\newline
+ this function checks if a hypothesis is ready, to do this I check if the value of ready within the acquired hypothesis is set to true 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_hyp_ready_action_8cpp_af51469e6d1a5a6288b0b593b0dd3f254}\label{_hyp_ready_action_8cpp_af51469e6d1a5a6288b0b593b0dd3f254}} 
+\index{HypReadyAction.cpp@{HypReadyAction.cpp}!\_new\_hyp@{\_new\_hyp}}
+\index{\_new\_hyp@{\_new\_hyp}!HypReadyAction.cpp@{HypReadyAction.cpp}}
+\doxysubsubsection{\texorpdfstring{\_new\_hyp()}{\_new\_hyp()}}
+{\footnotesize\ttfamily void \+\_\+new\+\_\+hyp (\begin{DoxyParamCaption}\item[{const exp\+\_\+ass2\+::\+New\+Hyp\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+\+: new\+\_\+hyp function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em } & msg\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+This function checks if the value of the ready hypothesis is true and if so sets a variable x to 1 so that the function above knows that a new hypothesis has been found \mbox{\Hypertarget{_hyp_ready_action_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{_hyp_ready_action_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{HypReadyAction.cpp@{HypReadyAction.cpp}!main@{main}}
+\index{main@{main}!HypReadyAction.cpp@{HypReadyAction.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+\+: main function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em } & \\
+\hline
+\end{DoxyParams}

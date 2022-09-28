@@ -1,0 +1,57 @@
+\hypertarget{class_k_c_l__rosplan_1_1_move_to_hint_interface}{}\doxysection{K\+C\+L\+\_\+rosplan\+::Move\+To\+Hint\+Interface Class Reference}
+\label{class_k_c_l__rosplan_1_1_move_to_hint_interface}\index{KCL\_rosplan::MoveToHintInterface@{KCL\_rosplan::MoveToHintInterface}}
+
+
+Inheritance diagram for K\+C\+L\+\_\+rosplan\+::Move\+To\+Hint\+Interface\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=263pt]{class_k_c_l__rosplan_1_1_move_to_hint_interface__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for K\+C\+L\+\_\+rosplan\+::Move\+To\+Hint\+Interface\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=263pt]{class_k_c_l__rosplan_1_1_move_to_hint_interface__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_k_c_l__rosplan_1_1_move_to_hint_interface_a7e2ed3d518ca88c38458ac2a25800a7b}\label{class_k_c_l__rosplan_1_1_move_to_hint_interface_a7e2ed3d518ca88c38458ac2a25800a7b}} 
+{\bfseries Move\+To\+Hint\+Interface} (ros\+::\+Node\+Handle \&nh)
+\item 
+bool \mbox{\hyperlink{class_k_c_l__rosplan_1_1_move_to_hint_interface_abce78054b783383073b56c90a700717c}{concrete\+Callback}} (const rosplan\+\_\+dispatch\+\_\+msgs\+::\+Action\+Dispatch\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em \+: \mbox{\hyperlink{class_k_c_l__rosplan_1_1_move_to_hint_interface}{Move\+To\+Hint\+Interface}} function \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_k_c_l__rosplan_1_1_move_to_hint_interface_abce78054b783383073b56c90a700717c}\label{class_k_c_l__rosplan_1_1_move_to_hint_interface_abce78054b783383073b56c90a700717c}} 
+\index{KCL\_rosplan::MoveToHintInterface@{KCL\_rosplan::MoveToHintInterface}!concreteCallback@{concreteCallback}}
+\index{concreteCallback@{concreteCallback}!KCL\_rosplan::MoveToHintInterface@{KCL\_rosplan::MoveToHintInterface}}
+\doxysubsubsection{\texorpdfstring{concreteCallback()}{concreteCallback()}}
+{\footnotesize\ttfamily bool K\+C\+L\+\_\+rosplan\+::\+Move\+To\+Hint\+Interface\+::concrete\+Callback (\begin{DoxyParamCaption}\item[{const rosplan\+\_\+dispatch\+\_\+msgs\+::\+Action\+Dispatch\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+\+: \mbox{\hyperlink{class_k_c_l__rosplan_1_1_move_to_hint_interface}{Move\+To\+Hint\+Interface}} function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & \+: the variables received from the plan dispatcher\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true
+\end{DoxyReturn}
+This function implements the movement of the robot from the center (home) to the waypoints when the planner dispatches the action goto\+\_\+waypoint. It takes the waypoints name and sends the request to the go\+\_\+to\+\_\+point server to reach the new position. When the robot reach the position the action is marked as performed. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/exp\+\_\+ass2/Interface\+Action.\+h\item 
+src/\mbox{\hyperlink{_move_to_hint_action_8cpp}{Move\+To\+Hint\+Action.\+cpp}}\end{DoxyCompactItemize}
