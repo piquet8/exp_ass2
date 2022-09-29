@@ -11,7 +11,7 @@ ARENA - from gazebo | HINTS - from rviz
 
 ## Expected Behaviour
 The robot should:
-- move the robot and the arm to takes the hints in different positions: (3,0) (-3,0) (0, 3) (0,-3) with two possible z positions (0.75 , 1.25)
+- move itslef and the arm to takes the hints in different positions: (3,0) (-3,0) (0, 3) (0,-3) with two possible z positions (0.75 , 1.25)
 - when a consistent hypothesis is deducible, it should go the center of the arena and express it in English
 - if the hypothesis is wrong, it should keep exploring and find new hints
 ## Features of the project
