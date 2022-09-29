@@ -140,8 +140,16 @@ Here is possible see a small demo video that shows the robot in action, in parti
 ## System's features
 
 ## System's limitations
+The limitations of the project, although these do not prevent its goal and execution, are mainly three:
+- the simulation is very slow (in part probably also due to the low performance of my pc) and the robot takes a long time to move and consequently also a long time to get a complete hypothesis (this also depends on the number of clues with wrong format that are found)
+- the robot is forced to go through the center of the arena moving from waypoint to waypoint because this is the only way I make sure that the robot arrives frontally to the wall and consequently to the marker placed at that waypoint
+- the order of the actions does not exactly reflect the one provided by the assignment in that the robot checks if it has a hypothesis in the center of the arena and in case the hypothesis you know ready it says it, I think the exact behavior should provide that the check of the ready hypothesis should be done during the movement of the robot between the waypoints and only in the case of a ready hypothesis the robot should head to the center of the arena to state the hypothesis found. The problem described here could be caused by the previous one 
 
 ## System's technical improvements
+The possible improvements that should be implemented are:
+- modify the go_to_point_action file in order to handle the orientation with which the robot arrives when it finishes the movement between waypoints in this way I could avoid having to go through the center of the arena speeding up the process of collecting clues, another alternative could be instead to handle differently the movement of the arm that for the moment uses two predefined positions, choosing a solution that moves the arm to a certain desired point in space regardless of the position of the base of our robot
+-modify the logic of the plan so that the solution requires fewer steps between different actions and a different sequence of execution
+- an additional idea that might speed up clue collection, although I don't know if it goes against the assignment rules might be that if the robot finds a clue of the wrong format, the robot turns on itself 360 degrees and picks up a new clue from the same waypoint, that way there would never be 'wasted' visits to a waypoint
 
 # Specific link to folders  
 - Here you can find the documentation: [docs](https://github.com/piquet8/exp_ass2/tree/main/docs)
