@@ -5,7 +5,7 @@
     wphome - home
 )
 (:init
-    (robot_at_home wphome)
+    (at_home wphome)
     (not (new_hint wp1))
     (not (new_hint wp2))
     (not (new_hint wp3))
