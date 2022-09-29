@@ -39,13 +39,15 @@ All of the above behaviors are performed through the use of the ROSPlan module t
 
 [MoveToHintAction.cpp](https://github.com/piquet8/exp_ass2/blob/main/src/MoveToHintAction.cpp): this action it used to move the robot from the center of the arena to one of the waypoint. To move the robot this node uses the action *reaching_goal* provided by the [go_to_point_action.py](https://github.com/piquet8/exp_ass2/blob/main/rt2_packages/motion_plan/scripts/go_to_point_action.py) insie the [rt2_packages](https://github.com/piquet8/exp_ass2/tree/main/rt2_packages/motion_plan)
 
-[TakeHintAction.cpp](https://github.com/piquet8/exp_ass2/blob/main/src/TakeHintAction.cpp)
+[TakeHintAction.cpp](https://github.com/piquet8/exp_ass2/blob/main/src/TakeHintAction.cpp): this node implements the hints acquisition process i.e. arm movement and saving the obtained clue. The *moveit* module is used to move the arm, through which the robot can move the arm in two positions depending on the position of the hint to be reached. In this node also it is checked whether the obtained hint has a suitable format and if so this is rewritten in a more readable format by the hint_armor node. This node subscribes to the */oracle_hint* topic to get the hint once the marker is reached, to the */odom* topic and */visualization_marker* topic to know in which waypoint the robot is located and at what height the marker is placed at that location. Instead, publish in the */new_hint* topic the message containing the clue found and processed into a unique string
 
-[HypReadyAction.cpp](https://github.com/piquet8/exp_ass2/blob/main/src/HypReadyAction.cpp)
+[HypReadyAction.cpp](https://github.com/piquet8/exp_ass2/blob/main/src/HypReadyAction.cpp): this node is only concerned with checking whether a hypothesis is ready to be tested, to do this it subscribes to the */hypothesis* topic and checks the value of *ready* if this comes out True then it sets a variable by which it is reported that a hypothesis has been found. Otherwise it is reported that no hypothesis has yet been found
 
-[CheckHypAction.cpp](https://github.com/piquet8/exp_ass2/blob/main/src/CheckHypAction.cpp)
+[CheckHypAction.cpp](https://github.com/piquet8/exp_ass2/blob/main/src/CheckHypAction.cpp): this node has the function of checking whether the hypothesis stated by the robot is the correct one or not. To do this it subscribes to the topic */hypothesis* and acquires the values related to the hypothesis; after declaring the hypothesis the robot compares the id of the examined hypothesis with the id of the winning hypothesis which is obtained with a client to the service */oracle_solution*. In case of a positive outcome the game ends with a win message, otherwise the oracle notifies that the hypothesis is incorrect and the robot resumes the search
 
-[simulation_node.cpp](https://github.com/piquet8/exp_ass2/blob/main/src/simulation_node.cpp)
+[simulation_node.cpp](https://github.com/piquet8/exp_ass2/blob/main/src/simulation_node.cpp): this node was provided by the professor in the [erl2](https://github.com/CarmineD8/erl2) package, it implements the simulation and in particular provides the positions of the markers, the hints randomly generated and published on the topic */oracle_hint* and the id of the winning hypothesis also randomly generated and provided by the service */oracle_solution*
+
+*If you need you can find a more accurate description of the nodes used in the documentation* [docs](https://github.com/piquet8/exp_ass2/tree/main/docs)
 
 ## Messages
 [ErlOracle.msg](https://github.com/piquet8/exp_ass2/blob/main/msg/ErlOracle.msg)
@@ -61,8 +63,8 @@ All of the above behaviors are performed through the use of the ROSPlan module t
 
 [problem.pddl](https://github.com/piquet8/exp_ass2/blob/main/pddl/problem.pddl)
 
-##Urd
-robot.urdf(https://github.com/piquet8/exp_ass2/blob/main/urdf/robot8.urdf)
+## Urd
+[robot.urdf](https://github.com/piquet8/exp_ass2/blob/main/urdf/robot8.urdf)
 
 ## UML
 ![UML](https://github.com/piquet8/exp_ass2/blob/main/media_exp2/UML.jpg)
@@ -114,7 +116,7 @@ Here is possible see a small demo video that shows the robot in action, in parti
 ## System's technical improvements
 
 # Specific link to folders  
-- Here you can find the documentation: [docs](https://github.com/piquet8/exp_ass1/tree/master/docs)
+- Here you can find the documentation: [docs](https://github.com/piquet8/exp_ass2/tree/main/docs)
 - Here you can find the media and diagram file: [media and diagram](https://github.com/piquet8/exp_ass2/media_exp2)
 
 # Authors and contacts
