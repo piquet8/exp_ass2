@@ -27,17 +27,48 @@ All of the above behaviors are performed through the use of the ROSPlan module t
 # Project structure
 
 ## Nodes
+### Scripts folder
+[hint_armor.py](https://github.com/piquet8/exp_ass2/blob/main/scripts/hint_armor.py): this node implements the cluedo ontology of the robot, it takes hints from the topic */new_hint* and manages them to achieve a complete and consistent hypothesis. It's the same node of the previous assignment, you can find more information there [exp_ass1](https://github.com/piquet8/exp_ass1)
+
+[plan.py](https://github.com/piquet8/exp_ass2/blob/main/scripts/plan.py): this node implements the plan that allows the robot to achieve its goal by performing the different actions. It initializes all the servers needed for the generation, planning and execution of the plan and implements several update functions.. Until all actions are successful (especially the "CheckHypAction" action) a re-planning takes place
+
+### Src folder
+[MoveAction.cpp](https://github.com/piquet8/exp_ass2/blob/main/src/MoveAction.cpp): this action it used in the reconnaissance phase, it forces the robot to visit all the waypoint one after another. To avoid the problem of the orientation of the robot repsect to the wall (it could be a problem for move arm and take hint) I impose to robot to pass through the center each time before reach the new waypoint. To move the robot this node uses the action *reaching_goal* provided by the [go_to_point_action.py](https://github.com/piquet8/exp_ass2/blob/main/rt2_packages/motion_plan/scripts/go_to_point_action.py) insie the [rt2_packages](https://github.com/piquet8/exp_ass2/tree/main/rt2_packages/motion_plan)
+
+[MoveToOracleAction.cpp](https://github.com/piquet8/exp_ass2/blob/main/src/MoveToOracleAction.cpp): this action it used to move the robot from a waypoint to the center of the arena. To move the robot this node uses the action *reaching_goal* provided by the [go_to_point_action.py](https://github.com/piquet8/exp_ass2/blob/main/rt2_packages/motion_plan/scripts/go_to_point_action.py) insie the [rt2_packages](https://github.com/piquet8/exp_ass2/tree/main/rt2_packages/motion_plan)
+
+[MoveToHintAction.cpp](https://github.com/piquet8/exp_ass2/blob/main/src/MoveToHintAction.cpp): this action it used to move the robot from the center of the arena to one of the waypoint. To move the robot this node uses the action *reaching_goal* provided by the [go_to_point_action.py](https://github.com/piquet8/exp_ass2/blob/main/rt2_packages/motion_plan/scripts/go_to_point_action.py) insie the [rt2_packages](https://github.com/piquet8/exp_ass2/tree/main/rt2_packages/motion_plan)
+
+[TakeHintAction.cpp](https://github.com/piquet8/exp_ass2/blob/main/src/TakeHintAction.cpp)
+
+[HypReadyAction.cpp](https://github.com/piquet8/exp_ass2/blob/main/src/HypReadyAction.cpp)
+
+[CheckHypAction.cpp](https://github.com/piquet8/exp_ass2/blob/main/src/CheckHypAction.cpp)
+
+[simulation_node.cpp](https://github.com/piquet8/exp_ass2/blob/main/src/simulation_node.cpp)
 
 ## Messages
+[ErlOracle.msg](https://github.com/piquet8/exp_ass2/blob/main/msg/ErlOracle.msg)
 
+[NewHint.msg](https://github.com/piquet8/exp_ass2/blob/main/msg/NewHint.msg)
+
+[NewHyp.msg](https://github.com/piquet8/exp_ass2/blob/main/msg/NewHyp.msg)
 ## Services
+[Oracle.srv](https://github.com/piquet8/exp_ass2/blob/main/srv/Oracle.srv)
 
-## Parameters
+## Pddl
+[domain.pddl](https://github.com/piquet8/exp_ass2/blob/main/pddl/domain.pddl)
+
+[problem.pddl](https://github.com/piquet8/exp_ass2/blob/main/pddl/problem.pddl)
+
+##Urd
+robot.urdf(https://github.com/piquet8/exp_ass2/blob/main/urdf/robot8.urdf)
 
 ## UML
 ![UML](https://github.com/piquet8/exp_ass2/blob/main/media_exp2/UML.jpg)
 
 ## Rqt-graph
+![Rqt-graph](https://github.com/piquet8/exp_ass2/blob/main/media_exp2/rqt_graph.png)
 
 # How to launch
 
