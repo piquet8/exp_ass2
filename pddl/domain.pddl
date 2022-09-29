@@ -12,9 +12,9 @@
 	(robot_at ?wp - waypoint)
 	
 	;indicate if the robot is in the home position
-    (at_home ?h - home)
+        (at_home ?h - home)
     
-    ;indicate if a hypothesis is checked
+        ;indicate if a hypothesis is checked
 	(check_hp)
 	
 	;indicate if a hypothesis is ready to be checked
