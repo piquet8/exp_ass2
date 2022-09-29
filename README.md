@@ -22,8 +22,9 @@ The assignment requires:
 # How it works
 In this project, the purpose of the robot is to reach certain points within the arena in order to acquire hints that can be used to find the correct hypothesis. Initially, the robot performs a 'reconnaissance' round in which it visits all 4 points of interest one after the other, moving its arm in the two possible positions so as to acquire the first clues but above all to identify the z-position relative to the point visited in this way it can used it in subsequent visits, thus avoiding wasting time by moving the arm when it is not needed. Once the reconnaissance round is over and the positions relative to the different points to be visited have thus been acquired, the robot will again visit the different points randomly until it has obtained enough hints to determine a complete hypothesis. When the hypothesis is ready the robot goes to the center of the arena and says its hypothesis, if the hypothesis is the correct one the game ends otherwise the robot resumes the search.
 
-# Project structure
 All of the above behaviors are performed through the use of the ROSPlan module that coordiantes the actions that follow one another based on the success or failure of the previous action. To move the robot from one waypoint to another, so in the initial reconnaissance phase the [MoveAction](https://github.com/piquet8/exp_ass2/blob/main/src/MoveAction.cpp) is used, instead for the moves from the oracle (center of the arena) to the waypoints and vice versa the [MoveToOracleAction](https://github.com/piquet8/exp_ass2/blob/main/src/MoveToOracleAction.cpp) and the [MoveToHintAction](https://github.com/piquet8/exp_ass2/blob/main/src/MoveToHintAction.cpp) are utlized these nodes use the [go_to_point_action.py](https://github.com/piquet8/exp_ass2/blob/main/rt2_packages/motion_plan/scripts/go_to_point_action.py) node. When the robot arrives at a waypoint it uses the [TakeHintAction](https://github.com/piquet8/exp_ass2/blob/main/src/TakeHintAction.cpp) to move its arm using the functions provided by MoveIt; the positions were created on previously on MoveIt and differ based on the height reached, the 'up' position is used to reach clues placed at 1.25 while the 'down' position for those at 0.75. Each time the robot acquires a clue it is taken by the ontology which evaluates whether it has enough clues to formulate a complete hypothesis. When this hypothesis is ready the [HypReadyAction](https://github.com/piquet8/exp_ass2/blob/main/src/HypReadyAction.cpp) detects it and communicates that it has a ready hypothesis, the robot then moves to the center of the arena and the [CheckHypAction](https://github.com/piquet8/exp_ass2/blob/main/src/CheckHypAction.cpp) checks if the hypothesis found matches the winning one. If the hypothesis is the winning one the game ends otherwise the robot resumes the search.
+
+# Project structure
 
 ## Nodes
 ### Scripts folder
@@ -76,8 +77,23 @@ The logic of operation follows a plan whereby initially no waypoints are visited
 ![Rqt-graph](https://github.com/piquet8/exp_ass2/blob/main/media_exp2/rqt_graph.png)
 
 # How to launch
+1. Firstly, open the terminal, go to your workspace and in the src folder run:
+```
+git clone https://github.com/piquet8/exp_ass2.git
+```
+**Remember** that python files must be made executable before they are run, to do this, go to the directory of the file and use: `chmod +x file_name.py`
 
-# Video and images of the running programme
+2. Then to launch the simulation environment and relative nodes open a new shell tab and run the command:
+```
+roslaunch exp_ass2 final.launch
+```
+3. Finally to starts the game open a new shell tab and run the command:
+```
+roslaunch exp_ass2 plan.py
+```
+
+
+# Video and images of the running program
 - [VIDEO_DEMO](https://github.com/piquet8/exp_ass2/blob/main/media_exp2/demo_exp2.mp4)
 
 Here is possible see a small demo video that shows the robot in action, in particular in this video is possible to see the 'reconnaissance' phase where the robot visits all the waypoint for the first time and check both the z possible solutions, then it starts the random search but now when the robot is in the waypoint position it moves the arm in different position only if it is necessary. It's possible see in the Rviz interface that the markers are reached form the arm and in the terminal is possibile to see the infomration about the execution, the hints and the hypothesis states. Due to the slowness of the simulation (also due to the weak features of my pc) the video has been sped up and shows only a part of the whole simulation, so I have added below some images showing the most important messages displayed at the terminal during the simulation
