@@ -76,7 +76,16 @@ The logic of operation follows a plan whereby initially no waypoints are visited
 ## Rqt-graph
 ![Rqt-graph](https://github.com/piquet8/exp_ass2/blob/main/media_exp2/rqt_graph.png)
 
-# How to launch
+# How to run the program
+## Requirements
+For run this project you will need the following packages:
+- *armor server* you can find the installation procedure here: https://github.com/EmaroLab/armor
+- *ROSPlan*
+
+You should find these packages already installed in this docker workspace: https://hub.docker.com/r/carms84/exproblab
+
+## How to launch
+
 1. Firstly, open the terminal, go to your workspace and in the src folder run:
 ```
 git clone https://github.com/piquet8/exp_ass2.git
