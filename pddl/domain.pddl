@@ -9,9 +9,9 @@
 
 (:predicates
 	(robot_at ?wp - waypoint)
+	(at_home ?h - home)
 	(check_hp)
 	(ready_hp)
-	(robot_at_home ?h - home)
 	(new_hint ?wp - waypoint)
 )
 
@@ -43,7 +43,7 @@
 	:condition (at start (robot_at ?from))
 	:effect (and
 		(at start(not (robot_at ?from)))
-		(at end (robot_at_home ?to))
+		(at end (at_home ?to))
 		)
 )
 
@@ -52,9 +52,9 @@
 	:parameters (?from - home ?to - waypoint)
 	:duration ( = ?duration 60)
 	:condition (and
-		(at start (robot_at_home ?from)))
+		(at start (at_home ?from)))
 	:effect (and
-		(at start (not(robot_at_home ?from)))
+		(at start (not(at_home ?from)))
 		(at end (robot_at ?to))
 		)
 )
@@ -75,7 +75,7 @@
 	:parameters (?h - home)
 	:duration ( = ?duration 60)
 	:condition (and
-		(at start (robot_at_home ?h))
+		(at start (at_home ?h))
 		(at start (ready_hp))
 		)
 	:effect (and
