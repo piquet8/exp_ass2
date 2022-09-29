@@ -136,7 +136,7 @@ Here is possible see a small demo video that shows the robot in action, in parti
 
 # Specific link to folders  
 - Here you can find the documentation: [docs](https://github.com/piquet8/exp_ass2/tree/main/docs)
-- Here you can find the media and diagram file: [media and diagram](https://github.com/piquet8/exp_ass2/media_exp2)
+- Here you can find the media and diagram file: [media and diagram](https://github.com/piquet8/exp_ass2/tree/main/media_exp2)
 
 # Authors and contacts
 AUTHOR: Gianluca Piquet
