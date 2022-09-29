@@ -90,7 +90,7 @@ You should find these packages already installed in this docker workspace: https
 ```
 git clone https://github.com/piquet8/exp_ass2.git
 ```
-**Remember** that python files must be made executable before they are run, to do this, go to the directory of the file and use: `chmod +x file_name.py`
+After that you need to build the package in the workspace: *catkin_make --only-pkg-with-deps exp_ass2*
 
 2. Then to launch the simulation environment and relative nodes open a new shell tab and run the command:
 ```
