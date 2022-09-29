@@ -41,7 +41,39 @@ All of the above behaviors are performed through the use of the ROSPlan module t
 
 # How to launch
 
-# Video of the running programme
+# Video and images of the running programme
+- [VIDEO_DEMO](https://github.com/piquet8/exp_ass2/blob/main/media_exp2/demo_exp2.mp4)
+
+Here is possible see a small demo video that shows the robot in action, in particular in this video is possible to see the 'reconnaissance' phase where the robot visits all the waypoint for the first time and check both the z possible solutions, then it starts the random search but now when the robot is in the waypoint position it moves the arm in different position only if it is necessary. It's possible see in the Rviz interface that the markers are reached form the arm and in the terminal is possibile to see the infomration about the execution, the hints and the hypothesis states. Due to the slowness of the simulation (also due to the weak features of my pc) the video has been sped up and shows only a part of the whole simulation, so I have added below some images showing the most important messages displayed at the terminal during the simulation
+
+- In this image you can see the sequence of commands executed by ROSPlan to generate and painify an execution plan for the robot
+
+![ROSPlan](https://github.com/piquet8/exp_ass2/blob/main/media_exp2/rosplan_screen.png)
+
+- Instead here it's possible to see the re-plan phase, the hypothesis is not ready but the robot has visited all the waypoints so we put randomly one of the waypoint as not-visited and the robot starts again the search
+
+![ROSPlan](https://github.com/piquet8/exp_ass2/blob/main/media_exp2/replan_screen.png)
+
+- Here we can see the message that robot print when it visits for the first time a waypoint:
+
+![z stored](https://github.com/piquet8/exp_ass2/blob/main/media_exp2/store_z.png)
+
+![z2 stored](https://github.com/piquet8/exp_ass2/blob/main/media_exp2/store_z2.png)
+
+- In the next images we see the message about the hint taken, the robot move the arm and takes the hint. Sometime the hint could be in the wrong format and the robot in this case reports it and discards it
+
+![move_arm](https://github.com/piquet8/exp_ass2/blob/main/media_exp2/move_arm.png)
+
+![hint](https://github.com/piquet8/exp_ass2/blob/main/media_exp2/found_hint.png)
+
+![hint_wrong](https://github.com/piquet8/exp_ass2/blob/main/media_exp2/wronghint_screen.png)
+
+- In the last two images we see the screen about the wrong hypothesis and the winner hypothesis
+
+![wrong](https://github.com/piquet8/exp_ass2/blob/main/media_exp2/wrong_screen.png)
+
+![winner](https://github.com/piquet8/exp_ass2/blob/main/media_exp2/winning_screen.png)
+
 
 # Working hypothesis and environment
 ## System's features
