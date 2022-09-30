@@ -81,6 +81,7 @@ The logic of operation follows a plan whereby initially no waypoints are visited
 For run this project you will need the following packages:
 - *armor server* you can find the installation procedure here: https://github.com/EmaroLab/armor
 - *ROSPlan*
+- *rt2_packages*
 
 You should find these packages already installed in this docker workspace: https://hub.docker.com/r/carms84/exproblab
 
