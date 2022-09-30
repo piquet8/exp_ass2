@@ -79,19 +79,20 @@ The logic of operation follows a plan whereby initially no waypoints are visited
 # How to run the program
 ## Requirements
 For run this project you will need the following packages:
-- *armor server* you can find the installation procedure here: https://github.com/EmaroLab/armor
+- **armor server** you can find the installation procedure here: https://github.com/EmaroLab/armor
 
 ARMOR is the management system we use for our ontology in a ROS system
 
-- *ROSPlan* you can find it here: https://github.com/KCL-Planning/ROSPlan
+- **ROSPlan** you can find it here: https://github.com/KCL-Planning/ROSPlan
 
 ROSPlan framework provides a generic method for task planning in a ROS system
 
-- *rt2_packages* you can find it here: https://github.com/CarmineD8/rt2_packages
+- **rt2_packages** you can find it here: https://github.com/CarmineD8/rt2_packages
 
-You should find these packages already installed in this docker workspace: https://hub.docker.com/r/carms84/exproblab
+This package provides within it the *motion_plan* package that implements the *go_to_point* nodes used for robot motion
 
-this package provides within it the *motion_plan* package that implements the go_to_point nodes used for robot motion
+*SUGGESTION: you should find these packages already installed in this docker workspace:* https://hub.docker.com/r/carms84/exproblab
+
 
 ## How to launch
 
