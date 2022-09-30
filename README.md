@@ -105,9 +105,13 @@ After that you need to build the package in the workspace: *catkin_make --only-p
 ```
 roslaunch exp_ass2 final.launch
 ```
+*SUGGESTION: For a cleaner terminal with no warning messages I suggest you to try to use this command to launch*
+```
+roslaunch exp_ass2 final.launch 2>/dev/null
+```
 3. Finally to starts the game open a new shell tab and run the command:
 ```
-roslaunch exp_ass2 plan.py
+rosrun exp_ass2 plan.py
 ```
 
 
