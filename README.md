@@ -106,7 +106,7 @@ After that you need to build the package in the workspace: *catkin_make --only-p
 ```
 roslaunch exp_ass2 final.launch
 ```
-*SUGGESTION: For a cleaner terminal with no warning messages I suggest you to try to use this command to launch*
+*SUGGESTION: For a cleaner terminal with no warning messages I suggest you to try to use this command to launch:*
 ```
 roslaunch exp_ass2 final.launch 2>/dev/null
 ```
