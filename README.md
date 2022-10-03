@@ -28,7 +28,7 @@ All of the above behaviors are performed through the use of the ROSPlan module t
 
 ## Nodes
 ### Scripts folder
-[hint_armor.py](https://github.com/piquet8/exp_ass2/blob/main/scripts/hint_armor.py): this node implements the cluedo ontology of the robot, it takes hints from the topic */new_hint* and manages them to achieve a complete and consistent hypothesis. It's the same node of the previous assignment, you can find more information there [exp_ass1](https://github.com/piquet8/exp_ass1)
+[hint_armor.py](https://github.com/piquet8/exp_ass2/blob/main/scripts/hint_armor.py): this node implements the cluedo ontology of the robot, it takes hints from the topic `/new_hint` and manages them to achieve a complete and consistent hypothesis. It's the same node of the previous assignment, you can find more information there [exp_ass1](https://github.com/piquet8/exp_ass1)
 
 [plan.py](https://github.com/piquet8/exp_ass2/blob/main/scripts/plan.py): this node implements the plan that allows the robot to achieve its goal by performing the different actions. It initializes all the servers needed for the generation, planning and execution of the plan and implements several update functions.. Until all actions are successful (especially the "CheckHypAction" action) a re-planning takes place
 
